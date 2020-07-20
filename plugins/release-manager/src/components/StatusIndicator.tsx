@@ -14,7 +14,7 @@
  * limitations under the License.
  */
 import React, { FC } from 'react';
-import { styled, makeStyles, useTheme } from '@material-ui/core';
+import { styled, makeStyles } from '@material-ui/core';
 import { Status } from '../types';
 import { lightTheme } from '@backstage/theme';
 import { RmTooltip } from './RmTooltip';
@@ -23,8 +23,6 @@ export const StatusIndicator: FC<{ status: Status; tooltip?: string }> = ({
   status,
   tooltip,
 }) => {
-  // const theme = useTheme();
-
   if (status === 'loading') {
     return (
       <RmTooltip title={tooltip || 'Loading...'}>
