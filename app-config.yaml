@@ -25,3 +25,7 @@ techdocs:
 
 sentry:
   organization: spotify
+
+releasemanager:
+  android:
+    baseUrl: http://localhost:5000/v1

@@ -15,24 +15,29 @@
  */
 import useAxios from 'axios-hooks';
 import { SpacedProgress } from './components/SpacedProgress';
-import { stores, mode } from './utils/config';
-import React, { FC } from 'react';
+import React from 'react';
 import {
+  configApiRef,
   Content,
   ContentHeader,
   Header,
   HeaderLabel,
   Page,
   pageTheme,
+  useApi,
 } from '@backstage/core';
 import { AndroidTrack } from './types';
 import { RmErrorMessage } from './components/RmErrorMessage';
 import { AndroidReleases } from './components/AndroidReleases';
 
-const ReleaseManagerPage: FC<{}> = () => {
+const ReleaseManagerPage = () => {
+  const androidBaseUrl = useApi(configApiRef).getString(
+    'releasemanager.android.baseUrl',
+  );
+
   const [
     { data: androidData, loading: androidLoading, error: androidError },
-  ] = useAxios(`${stores.android.baseUrl[mode]}/com.spotify.music/tracks`);
+  ] = useAxios(`${androidBaseUrl}/com.spotify.music/tracks`);
 
   const AndroidTracks = () => {
     if (androidError) {
