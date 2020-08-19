@@ -35,9 +35,13 @@ const ReleaseManagerPage = () => {
     'releasemanager.android.baseUrl',
   );
 
+  const androidIdentifier = useApi(configApiRef).getString(
+    'releasemanager.android.identifier',
+  );
+
   const [
     { data: androidData, loading: androidLoading, error: androidError },
-  ] = useAxios(`${androidBaseUrl}/com.spotify.music/tracks`);
+  ] = useAxios(`${androidBaseUrl}/${androidIdentifier}/tracks`);
 
   const AndroidTracks = () => {
     if (androidError) {
