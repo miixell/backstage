@@ -39,6 +39,7 @@ import {
   SidebarUserSettings,
   SidebarThemeToggle,
   SidebarPinButton,
+  DefaultProviderSettings,
 } from '@backstage/core';
 import { NavLink } from 'react-router-dom';
 import { graphiQLRouteRef } from '@backstage/plugin-graphiql';
@@ -89,7 +90,7 @@ const Root: FC<{}> = ({ children }) => (
       <SidebarSearchField onSearch={handleSearch} />
       <SidebarDivider />
       {/* Global nav, not org-specific */}
-      <SidebarItem icon={HomeIcon} to="./" text="Home" />
+      <SidebarItem icon={HomeIcon} to="/catalog" text="Home" />
       <SidebarItem icon={ExploreIcon} to="explore" text="Explore" />
       <SidebarItem icon={ExtensionIcon} to="api-docs" text="APIs" />
       <SidebarItem icon={LibraryBooks} to="docs" text="Docs" />
@@ -107,7 +108,7 @@ const Root: FC<{}> = ({ children }) => (
       <SidebarSpace />
       <SidebarDivider />
       <SidebarThemeToggle />
-      <SidebarUserSettings />
+      <SidebarUserSettings providerSettings={<DefaultProviderSettings />} />
       <SidebarPinButton />
     </Sidebar>
     {children}
