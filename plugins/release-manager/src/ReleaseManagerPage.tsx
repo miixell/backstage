@@ -23,7 +23,6 @@ import {
   Header,
   HeaderLabel,
   Page,
-  pageTheme,
   useApi,
 } from '@backstage/core';
 import { AndroidTrack } from './types';
@@ -66,7 +65,7 @@ const ReleaseManagerPage = () => {
   };
 
   return (
-    <Page theme={pageTheme.home}>
+    <Page themeId="home">
       <Header type="Tool" title="Release Manager">
         <HeaderLabel label="Owner" value="release" url="/org/release" />
         <HeaderLabel label="Lifecycle" value="Experimental" />

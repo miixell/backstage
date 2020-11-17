@@ -15,7 +15,7 @@
  */
 import React from 'react';
 import { InfoIcon } from './InfoIcon';
-import { RmExpansionPanel } from './RmExpansionPanel';
+import { RmAccordion } from './RmAccordion';
 import { StatusContainer } from './StatusContainer';
 import { StatusItem } from './StatusItem';
 import { getAndroidReleaseStatus } from '../utils/status';
@@ -47,7 +47,5 @@ export const AndroidReleaseStatusPane = ({
     );
   };
 
-  return (
-    <RmExpansionPanel expandable={false} status={status} title={<Title />} />
-  );
+  return <RmAccordion expandable={false} status={status} title={<Title />} />;
 };

@@ -31,9 +31,9 @@
  */
 import React, { useState, useEffect } from 'react';
 import {
-  ExpansionPanel,
-  ExpansionPanelSummary,
-  ExpansionPanelDetails,
+  Accordion,
+  AccordionSummary,
+  AccordionDetails,
   Typography,
 } from '@material-ui/core';
 import ExpandMoreIcon from '@material-ui/icons/ExpandMore';
@@ -64,20 +64,20 @@ export const AndroidReleasePanel = ({
   }, [setStatus, status, release]);
 
   return (
-    <ExpansionPanel>
-      <ExpansionPanelSummary expandIcon={<ExpandMoreIcon />}>
+    <Accordion>
+      <AccordionSummary expandIcon={<ExpandMoreIcon />}>
         <StatusContainer>
           <StatusItem>
             <StatusIndicator status={status} />
             <Typography variant="body2">{version}</Typography>
           </StatusItem>
         </StatusContainer>
-      </ExpansionPanelSummary>
-      <ExpansionPanelDetails style={{ flexDirection: 'column' }}>
+      </AccordionSummary>
+      <AccordionDetails style={{ flexDirection: 'column' }}>
         <AndroidReleaseNotesPane releaseNotes={release.releaseNotes} />
         <AndroidReleaseVersionCodesPane versionCodes={release.versionCodes} />
         <AndroidReleaseStatusPane releaseStatus={release.status} />
-      </ExpansionPanelDetails>
-    </ExpansionPanel>
+      </AccordionDetails>
+    </Accordion>
   );
 };

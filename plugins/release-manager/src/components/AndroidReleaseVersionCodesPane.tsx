@@ -15,7 +15,7 @@
  */
 import React, { FC } from 'react';
 import { AndroidVersionCode } from '../types';
-import { RmExpansionPanel } from './RmExpansionPanel';
+import { RmAccordion } from './RmAccordion';
 import {
   Table,
   TableBody,
@@ -34,7 +34,7 @@ type Props = {
 
 export const AndroidReleaseVersionCodesPane: FC<Props> = ({ versionCodes }) => {
   return (
-    <RmExpansionPanel
+    <RmAccordion
       status="ok"
       flexDirection="column"
       expandable
@@ -63,6 +63,6 @@ export const AndroidReleaseVersionCodesPane: FC<Props> = ({ versionCodes }) => {
       ) : (
         <Typography variant="body2">No version codes present.</Typography>
       )}
-    </RmExpansionPanel>
+    </RmAccordion>
   );
 };

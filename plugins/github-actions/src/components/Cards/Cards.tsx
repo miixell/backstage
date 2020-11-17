@@ -32,6 +32,7 @@ import {
   useApi,
 } from '@backstage/core';
 import ExternalLinkIcon from '@material-ui/icons/Launch';
+import { GITHUB_ACTIONS_ANNOTATION } from '../useProjectName';
 
 const useStyles = makeStyles<Theme>({
   externalLinkIcon: {
@@ -59,7 +60,10 @@ const WidgetContent = ({
       metadata={{
         status: (
           <>
-            <WorkflowRunStatus status={lastRun.status} />
+            <WorkflowRunStatus
+              status={lastRun.status}
+              conclusion={lastRun.conclusion}
+            />
           </>
         ),
         message: lastRun.message,
@@ -77,13 +81,12 @@ const WidgetContent = ({
 export const LatestWorkflowRunCard = ({
   entity,
   branch = 'master',
-}: {
-  entity: Entity;
-  branch: string;
-}) => {
+  // Display the card full height suitable for
+  variant,
+}: Props) => {
   const errorApi = useApi(errorApiRef);
   const [owner, repo] = (
-    entity?.metadata.annotations?.['backstage.io/github-actions-id'] ?? '/'
+    entity?.metadata.annotations?.[GITHUB_ACTIONS_ANNOTATION] ?? '/'
   ).split('/');
   const [{ runs, loading, error }] = useWorkflowRuns({
     owner,
@@ -98,7 +101,7 @@ export const LatestWorkflowRunCard = ({
   }, [error, errorApi]);
 
   return (
-    <InfoCard title={`Last ${branch} build`}>
+    <InfoCard title={`Last ${branch} build`} variant={variant}>
       <WidgetContent
         error={error}
         loading={loading}
@@ -109,14 +112,18 @@ export const LatestWorkflowRunCard = ({
   );
 };
 
+type Props = {
+  entity: Entity;
+  branch: string;
+  variant?: string;
+};
+
 export const LatestWorkflowsForBranchCard = ({
   entity,
   branch = 'master',
-}: {
-  entity: Entity;
-  branch: string;
-}) => (
-  <InfoCard title={`Last ${branch} build`}>
+  variant,
+}: Props) => (
+  <InfoCard title={`Last ${branch} build`} variant={variant}>
     <WorkflowRunsTable branch={branch} entity={entity} />
   </InfoCard>
 );

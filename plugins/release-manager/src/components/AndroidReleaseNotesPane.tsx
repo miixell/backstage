@@ -15,7 +15,7 @@
  */
 import React, { ChangeEvent, FC } from 'react';
 import { AndroidReleaseNote } from '../types';
-import { RmExpansionPanel } from './RmExpansionPanel';
+import { RmAccordion } from './RmAccordion';
 import { TextField, Typography } from '@material-ui/core';
 import { Autocomplete } from '@material-ui/lab';
 import { Spacer } from './Spacer';
@@ -35,7 +35,7 @@ export const AndroidReleaseNotesPane: FC<Props> = ({ releaseNotes }) => {
   );
 
   return (
-    <RmExpansionPanel
+    <RmAccordion
       flexDirection="column"
       expandable
       title={
@@ -75,6 +75,6 @@ export const AndroidReleaseNotesPane: FC<Props> = ({ releaseNotes }) => {
       ) : (
         <Typography variant="body2">No release notes present.</Typography>
       )}
-    </RmExpansionPanel>
+    </RmAccordion>
   );
 };
